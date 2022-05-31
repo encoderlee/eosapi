@@ -1,4 +1,5 @@
 import setuptools
+from setuptools import find_packages
 
 with open("README.md", "r") as file:
     description = file.read()

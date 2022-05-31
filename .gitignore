@@ -1,2 +1,6 @@
 __pycache__
 .idea
+/*.bat
+/eosapi.egg-info
+/build
+/dist
