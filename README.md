@@ -9,6 +9,7 @@ A simple, high-level and lightweight eosio sdk write by python.
 
 # What is it?
 eosapi is a python library to interact with EOSIO blockchains.
+
 Its main focus are bot applications on the blockchain.
 
 # Install
