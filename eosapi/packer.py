@@ -220,9 +220,12 @@ def ecdsa_raw_sign_nonce(msghash, priv, nonce):
     return v, r, s
 
 
-def is_canonical(r, s):
-    c = int((2 ** 256 - 1) / 2)
-    return r <= c and s <= c
+# like https://github.com/EOSIO/eosjs-ecc/commit/09c823ac4c4fb4f7257d8ed2df45a34215a8c537#diff-e8c843fd1f732a963ec41decb2e69133R241
+def is_canonical(c):
+    return not (c[1] & 0x80) \
+           and not (c[1] == 0 and not (c[2] & 0x80)) \
+           and not (c[33] & 0x80) \
+           and not (c[33] == 0 and not (c[34] & 0x80))
 
 
 def ripmed160(data):

@@ -123,12 +123,13 @@ class Transaction:
         sha256.update(mbytes)
         while True:
             v, r, s = ecdsa_raw_sign_nonce(sha256.digest(), private_key, nonce)
-            if is_canonical(r, s):
-                signature = "00%02x%064x%064x" % (v, r, s)
+            signature = v.to_bytes(1, "big") + r.to_bytes(32, "big") + s.to_bytes(32, "big")
+            if is_canonical(signature):
+                signature = b"\x00" + signature
                 break
             nonce += 1
 
-        return self.unpack_signature(bytes.fromhex(signature))
+        return self.unpack_signature(signature)
 
     def unpack_signature(self, signature: bytes):
         t = Uint8.unpack(signature)
