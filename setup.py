@@ -7,7 +7,7 @@ with open("README.md", "r") as file:
 
 setuptools.setup(
     name="eosapi",
-    version="1.0.0",
+    version="1.0.2",
     author="encoderlee",
     author_email="encoderlee@gmail.com",
     description="a simple, high-level and lightweight eosio sdk write by python",
